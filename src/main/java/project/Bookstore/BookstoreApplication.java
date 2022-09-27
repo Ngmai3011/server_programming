@@ -11,6 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import project.Bookstore.entity.Book;
 import project.Bookstore.repository.BookRepository;
+import project.Bookstore.entity.Category;
+import project.Bookstore.repository.CategoryRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -22,11 +24,19 @@ public class BookstoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner bookDemo(BookRepository repository) {
+	public CommandLineRunner bookDemo(BookRepository repository, CategoryRepository caterepository) {
 		return (args) -> {
-			log.info("save a couple of students");
-			repository.save(new Book(1L,"Ernest Hemingway","A farewell to Arms","1232323-21",1929));
-			repository.save(new Book(2L,"George Orwell","Animal Farm","2212343-5",1945));
+			log.info("Save some books");
+			
+			caterepository.save(new Category("Arts & Music"));
+			caterepository.save(new Category("Comics"));
+			caterepository.save(new Category("Cooking"));
+			caterepository.save(new Category("Horror"));
+			caterepository.save(new Category("Novel"));
+
+			
+			repository.save(new Book(1L,"Ernest Hemingway","A farewell to Arms","1232323-21",1929, caterepository.findByName("Novel").get(0)));
+			repository.save(new Book(2L,"George Orwell","Animal Farm","2212343-5",1945,caterepository.findByName("Novel").get(0)));
 			
 			log.info("fetch all books");
 			for (Book book : repository.findAll()) {
