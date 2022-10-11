@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import project.Bookstore.entity.Book;
 import project.Bookstore.repository.BookRepository;
@@ -25,6 +27,11 @@ public class BookController {
 	
 	@Autowired
 	private CategoryRepository caterepository; 
+	
+    @RequestMapping(value="/login")
+    public String login() {	
+        return "login";
+    }	
 	
 	@GetMapping(value="/books")
 	public @ResponseBody List<Book> bookListRest() {
@@ -56,6 +63,7 @@ public class BookController {
         return "redirect:booklist";
     }    
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping(value = "/delete/{id}")
     public String deleteBook(@PathVariable("id") Long id, Model model) {
     	repository.deleteById(id);
