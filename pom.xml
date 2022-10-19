@@ -8,12 +8,9 @@
 		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	
 	<groupId>project</groupId>
 	<artifactId>Bookstore</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
-
 	<name>Bookstore</name>
 	<description>training project</description>
 	<properties>
@@ -40,17 +37,19 @@
  			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			</dependency>
+
+		<dependency>
+ 			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
 		
 		<dependency>
-<<<<<<< HEAD
- 			<groupId>org.postgresql</groupId>
- 			<artifactId>postgresql</artifactId>
- 		</dependency> 
+ <groupId>org.postgresql</groupId>
+ <artifactId>postgresql</artifactId>
+ </dependency> 
 
 
 		<dependency>
-=======
->>>>>>> f3e1e630d96b06ece74df25ed6775d6865072eab
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -71,12 +70,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		
-		<dependency>
- 		<groupId>org.postgresql</groupId>
- 		<artifactId>postgresql</artifactId>
- 		</dependency> 
-
 
 	</dependencies>
 
